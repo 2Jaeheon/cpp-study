@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/jaeheon/Desktop/Programming/Lang/Cpp/OOP",
-      "program": "/Users/jaeheon/Desktop/Programming/Lang/Cpp/OOP/build/Debug/outDebug"
+      "cwd": "/Users/jaeheon/Desktop/Programming/Lang/Cpp",
+      "program": "/Users/jaeheon/Desktop/Programming/Lang/Cpp/build/Debug/outDebug"
     }
   ]
 }
