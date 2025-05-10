@@ -119,3 +119,6 @@ int main()
     pc1.show_status();
     pc2.show_status();
 }
+
+// 참고로  C++에서 문자열을 다룰 때 char 배열로 다루지 않는다.
+// 대신 std::string 클래스를 사용한다.
