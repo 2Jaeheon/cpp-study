@@ -1,3 +1,23 @@
+// 복사 생성자 실습
+// 복사 생성자: 이미 생성된 객체를 이용해 새로운 객체를 초기화할 때 호출되는 생성자
+// ClassName(const ClassName &other);
+// reference를 통해서 효율을 높임
+
+/*
+얕은 복사 (Shallow Copy)
+    •	객체의 포인터만 복사합니다.
+    •	두 객체가 같은 메모리 공간을 공유하게 됩니다.
+    •	문제가 되는 이유: 두 객체 중 하나가 소멸되면 다른 객체의 포인터도 무효화됩니다.
+    → 더블 삭제(double delete) 오류 발생 가능!
+
+깊은 복사 (Deep Copy)
+    •	객체의 실제 메모리 공간까지 복사합니다.
+    •	원본 객체와 복사된 객체는 독립된 메모리를 가집니다.
+    •	안정적이고 안전한 메모리 사용이 가능!
+
+
+즉, 복사생성자에서 name을 그대로 복사하는 것이 아닌, 새로운 메모리를 할당하고 그 메모리에 값을 복사해야 함
+*/
 #include <iostream>
 #include <string.h>
 
@@ -31,6 +51,13 @@ public:
 //     damage = pc.damage;
 // }
 
+// 만약 이렇게 선언해서 만들지 않는다면,
+// 기본적으로 컴파일러가 default 복사 생성자를 만들어줌
+// 이 복사 생성자는 얕은 복사를 수행함
+// 즉, 멤버 변수들을 그대로 복사함
+// 이 경우, 두 객체가 같은 메모리 공간을 공유하게 됨
+// 둘 중 하나가 소멸되면 다른 객체의 포인터도 무효화됨
+// 더블 삭제(double delete) 오류 발생 가능!
 Photon_Cannon::Photon_Cannon(const Photon_Cannon &pc)
 {
     std::cout << "복사 생성자 호출! " << std::endl;
@@ -39,6 +66,11 @@ Photon_Cannon::Photon_Cannon(const Photon_Cannon &pc)
     coord_x = pc.coord_x;
     coord_y = pc.coord_y;
     damage = pc.damage;
+
+    // 깊은 복사
+    // 이를 사용하지 않으면, 두 객체가 같은 메모리 공간을 공유하게 됨
+    // 둘 중 하나가 소멸되면 다른 객체의 포인터도 무효화됨
+    // 더블 삭제(double delete) 오류 발생 가능!
     name = new char[strlen(pc.name) + 1];
     strcpy(name, pc.name);
 }
@@ -66,11 +98,6 @@ Photon_Cannon::Photon_Cannon(int x, int y, const char *cannon_name)
 
 Photon_Cannon::~Photon_Cannon()
 {
-    // 0 이 아닌 값은 if 문에서 true 로 처리되므로
-    // 0 인가 아닌가를 비교할 때 그냥 if(name) 하면
-    // if(name != 0) 과 동일한 의미를 가질 수 있다.
-    // 참고로 if 문 다음에 문장이 1 개만 온다면
-    // 중괄호를 생략 가능하다.
     if (name)
         delete[] name;
 }
