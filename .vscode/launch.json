@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/jaeheon/Desktop/Programming/Lang/Cpp",
-      "program": "/Users/jaeheon/Desktop/Programming/Lang/Cpp/build/Debug/outDebug"
+      "cwd": "/Users/jaeheon/Desktop/Programming/Lang/Cpp/variable & operator",
+      "program": "/Users/jaeheon/Desktop/Programming/Lang/Cpp/variable & operator/build/Debug/outDebug"
     }
   ]
 }
